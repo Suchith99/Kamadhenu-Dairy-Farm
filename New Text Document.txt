@@ -1,0 +1,27 @@
+create table Customer (                  ID smallint primary key auto_increment,                  Name varchar(50) unique not null,                  Cost Decimal(5,2) not null,                  Mobileno varchar(15) not null,                  Date date not null, UserName varchar(21) not null, Password varchar(21) not null, Status tinyint(1) NOT null, QuantityPerDay Decimal(7,2) not null, Address varchar(100) not null, Email varchar(50) not null  );
+
+
+/// Address table
+
+CREATE TABLE `id8679313_kamadhenudairy`.`Address` ( `AddressID` MEDIUMINT primary key AUTO_INCREMENT , `Line1` VARCHAR(25) NOT NULL , `Line2` VARCHAR(25)  , `City` VARCHAR(20) NOT NULL , `State` VARCHAR(25) NOT NULL , `Pincode` VARCHAR(6) NOT NULL ) ENGINE = InnoDB;
+
+
+
+///Milk table
+
+CREATE TABLE `id8679313_kamadhenudairy`.`Milk` ( `MilkID` TINYINT(1) PRIMARY KEY AUTO_INCREMENT , `Cost` DECIMAL(5,2) NOT NULL , `Description` VARCHAR(21) NOT NULL ) ENGINE = InnoDB
+
+///Constraint
+
+ALTER TABLE Customer ADD FOREIGN KEY (MilkID) REFERENCES Milk(MilkID);
+
+ALTER TABLE Address ADD FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+
+
+///Sales Table
+
+CREATE TABLE Sale ( `SaleID` INT PRIMARY KEY AUTO_INCREMENT , CustomerID SMALLINT(6) NOT NULL , Quantity decimal(7,2) NOT NULL,Date date NOT null)
+
+///Payment Table
+
+CREATE TABLE Payment ( `PaymentID` INT PRIMARY KEY AUTO_INCREMENT , CustomerID SMALLINT(6) NOT NULL , Amount decimal(9,2) NOT NULL,Date date NOT null)
